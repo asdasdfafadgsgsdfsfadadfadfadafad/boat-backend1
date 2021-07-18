@@ -34,7 +34,6 @@ app.post("/register",(req,resp)=>{
 app.post("/login",(req,resp)=>{
     password = req.body.password;
     username = req.body.username;
-    resp.json("fail")
     knex("users").select("*").where("password","=",password).andWhere("username","=",username).then(d=>{
         return d.length
     }).then(data=>{
