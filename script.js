@@ -13,7 +13,7 @@ const knex = require('knex')({
 app.use(express.json())
 app.use(cors())
 app.get("/",(req,resp)=>{
-    resp.json("all good")
+    resp.json(knex,knex("users"))
 })
 app.post("/register",(req,resp)=>{
     var email = req.body.email;
@@ -42,7 +42,7 @@ app.post("/login",(req,resp)=>{
         }else{
             resp.json("fail")
         }
-    }).catch(err => resp.json(err))
+    }).catch(err => resp.json("error"))
 })
 app.listen(PORT || 3000)
 
