@@ -6,10 +6,8 @@ const PORT = process.env.PORT
 const knex = require('knex')({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : '01203328888m',
-      database : 'boat'
+      connectionString:process.env.DATABASE_URL,
+      ssl:true,
     }
 });
 app.use(express.json())
