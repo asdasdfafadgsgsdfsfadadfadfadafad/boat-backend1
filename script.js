@@ -23,6 +23,7 @@ app.post("/register",(req,resp)=>{
         return data.length
     }).then(d=>{
         if (d >= 1){
+           
            resp.json("fail")
         }else{
            knex("users").insert({email:email,username:username,password:password}).then(console.log)
@@ -33,6 +34,7 @@ app.post("/register",(req,resp)=>{
 app.post("/login",(req,resp)=>{
     password = req.body.password;
     username = req.body.username;
+    resp.json("fail")
     knex("users").select("*").where("password","=",password).andWhere("username","=",username).then(d=>{
         return d.length
     }).then(data=>{
