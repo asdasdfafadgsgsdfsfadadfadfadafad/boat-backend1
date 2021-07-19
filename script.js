@@ -28,7 +28,7 @@ app.get("/",(req,resp)=>{
     .catch((err)=>{
         resp.json("error",err)
     })
-    .finally(()=>{client.end()})
+    .finally(()=>client.end())
     
 })
 
