@@ -22,15 +22,30 @@ const client = new Pool ({
 // });
 app.get("/",(req,resp)=>{
     // resp.json("asdasdasdasdasdasdasda")
+    const arr= []
     client.connect()
     .then(()=>{return client.query("select * from users")})
-    .then(data=>resp.json(data.rows))
+    .then(data=>arr.push(data.rows))
     .catch((err)=>{
         resp.json("error",err)
     })
     .finally(()=>client.end())
+    resp.json(arr)
+    // the problem is that it dosent client end it it keeps running and once resp.json runs it exits without ending
     
 })
+// app.get("/",(req,resp)=>{
+//     // resp.json("asdasdasdasdasdasdasda")
+//     client.connect()
+//     .then(()=>{return client.query("select * from users")})
+//     .then(data=>resp.json(data.rows))
+//     .catch((err)=>{
+//         resp.json("error",err)
+//     })
+//     .finally(()=>client.end())
+//     // the problem is that it dosent client end it it keeps running and once resp.json runs it exits without ending
+
+// })
 
 
 
