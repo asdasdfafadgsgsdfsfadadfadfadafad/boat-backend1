@@ -13,7 +13,7 @@ const knex = require('knex')({
 app.use(express.json())
 app.use(cors())
 app.get("/",(req,resp)=>{
-    resp.json("all good")
+    resp.json(process.env.DATABASE_URL)
 })
 app.post("/register",(req,resp)=>{
     var email = req.body.email;
