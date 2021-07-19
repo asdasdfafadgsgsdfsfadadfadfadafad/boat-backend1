@@ -27,10 +27,8 @@ app.use(cors())
 
 const knex = require('knex')({
     client: 'pg',
-    connection: {
-      connectionString:process.env.DATABASE_URL,
-      ssl:true,
-    }
+    connection: process.env.DATABASE_URL,
+
 });
 app.get("/",(req,resp)=>{
     knex.select("*").from("users").then(data =>{
@@ -38,7 +36,7 @@ app.get("/",(req,resp)=>{
     }).catch(err=>{
         resp.json(err)
     })
-    resp.json("didnt work")
+    resp.json(process.env.DATABASE_URL)
 })
 
 
