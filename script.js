@@ -22,7 +22,7 @@ const client = new Client({
 // });
 app.get("/",(req,resp)=>{
     // resp.json("asdasdasdasdasdasdasda")
-    console.log("Database_URL", process.env.DATABASE_URL)
+    resp.json(process.env.DATABASE_URL)
     client.connect()
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
