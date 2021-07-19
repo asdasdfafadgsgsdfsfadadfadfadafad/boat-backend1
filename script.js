@@ -17,9 +17,9 @@ app.use(cors())
 
 
 
-const knex = require('knex')({
-    production: { client: 'pg', connection: process.env.DATABASE_URL }
-});
+// const knex = require('knex')({
+//     production: { client: 'pg', connection: process.env.DATABASE_URL }
+// });
 app.get("/",(req,resp)=>{
     resp.json("232")
     // client.connect()
