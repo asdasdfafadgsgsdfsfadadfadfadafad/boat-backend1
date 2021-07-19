@@ -24,8 +24,8 @@ app.get("/",(req,resp)=>{
     client.connect()
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
-    .catch(resp.json("error "))
     .finally(()=>{client.end()})
+    
 })
 
 
@@ -64,36 +64,3 @@ app.post("/login",(req,resp)=>{
     })
 })
 app.listen(PORT || 3000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
