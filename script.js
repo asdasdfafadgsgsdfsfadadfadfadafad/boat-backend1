@@ -23,17 +23,6 @@ app.use(cors())
 //   }
 //   client.end();
 // });
-// client.connect();
-
-//     client.query('SELECT table_schema,* FROM information_schema.tables;', (err, res) => {
-//       if (err) throw err;
-//       for (let row of res.rows) {
-//         console.log(JSON.stringify(row));
-//       }
-//       client.end();
-// });
-
-
 
 
 const knex = require('knex')({
@@ -73,7 +62,9 @@ app.post("/login",(req,resp)=>{
         }else{
             resp.json("fail")
         }
-    }).catch(err => resp.json("error"))
+    }).catch(err => {
+        throw err
+    })
 })
 app.listen(PORT || 3000)
 
