@@ -21,6 +21,7 @@ const client = new Client({
 //     production: { client: 'pg', connection: process.env.DATABASE_URL }
 // });
 app.get("/",(req,resp)=>{
+    resp.json("asdasdasdasdasdasdasda")
     client.connect()
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
