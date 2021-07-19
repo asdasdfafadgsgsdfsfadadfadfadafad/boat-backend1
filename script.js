@@ -35,7 +35,10 @@ const knex = require('knex')({
 app.get("/",(req,resp)=>{
     knex.select("*").from("users").then(data =>{
         resp.json(data)
+    }).catch(err=>{
+        resp.json(err)
     })
+    resp.json("didnt work")
 })
 
 
