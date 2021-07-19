@@ -24,6 +24,10 @@ app.get("/",(req,resp)=>{
     client.connect()
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
+    .catch((err)=>{
+        throw err
+        resp.json("error",err)
+    })
     .finally(()=>{client.end()})
     
 })
