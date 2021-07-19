@@ -22,6 +22,7 @@ const client = new Client({
 // });
 app.get("/",(req,resp)=>{
     client.connect()
+    .then(()=>{return client.query("insert into users (email,password,username) values (2323232,1511616,asdadasdsad)")})
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
     .finally(()=>{client.end()})
