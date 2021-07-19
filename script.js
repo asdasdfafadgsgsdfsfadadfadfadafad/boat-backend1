@@ -5,36 +5,25 @@ const cors = require("cors")
 const PORT = process.env.PORT 
 app.use(express.json())
 app.use(cors())
-// const { Client } = require('pg');
+const { Client } = require('pg');
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
-
-// client.connect();
-
-// client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   client.end();
-// });
 
 
 const knex = require('knex')({
     production: { client: 'pg', connection: process.env.DATABASE_URL }
 });
 app.get("/",(req,resp)=>{
-    knex.select("*").from("users").then(data =>{
-        resp.json(data)
-    }).catch(err=>{
-        resp.json(err)
-    })
-    resp.json(process.env.DATABASE_URL)
+    client.connect()
+    .then(()=>{return client.query("select * from users")})
+    .then(data=>resp.json(data))
+    .finally(()=>{client.end()})
+
 })
 
 
