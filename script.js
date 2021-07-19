@@ -27,7 +27,8 @@ app.get("/",(req,resp)=>{
     .then(data=>resp.json(data))
     .then(()=>client.end())
     .catch((err)=>{
-        resp.json("error")
+        throw err
+        resp.json(err)
     })
     // resp.json(arr)
     // the problem is that it dosent client end it it keeps running and once resp.json runs it exits without ending
