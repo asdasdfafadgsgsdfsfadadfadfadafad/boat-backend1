@@ -26,9 +26,7 @@ app.use(cors())
 
 
 const knex = require('knex')({
-    client: 'pg',
-    connection: process.env.DATABASE_URL,
-
+    production: { client: 'pg', connection: process.env.DATABASE_URL }
 });
 app.get("/",(req,resp)=>{
     knex.select("*").from("users").then(data =>{
