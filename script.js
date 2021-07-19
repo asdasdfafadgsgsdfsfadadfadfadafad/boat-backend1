@@ -63,7 +63,7 @@ app.post("/login",(req,resp)=>{
             resp.json("fail")
         }
     }).catch(err => {
-        throw err
+        resp.json(err)
     })
 })
 app.listen(PORT || 3000)
