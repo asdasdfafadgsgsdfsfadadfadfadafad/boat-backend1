@@ -25,11 +25,11 @@ app.get("/",(req,resp)=>{
     const arr= []
     client.connect()
     .then(()=>{return client.query("select * from users")})
-    .then(data=>arr.concat(data.rows))
+    .then(data=>console.log(data))
     .catch((err)=>{
         resp.json("error",err)
     })
-    // .finally(()=>client.end())
+    .finally(()=>client.end())
     resp.json(arr)
     // the problem is that it dosent client end it it keeps running and once resp.json runs it exits without ending
     
