@@ -5,13 +5,15 @@ const cors = require("cors")
 const PORT = process.env.PORT 
 app.use(express.json())
 app.use(cors())
-const { Client } = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+
+
+// const { Client } = require('pg');
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 
 
@@ -20,11 +22,11 @@ const knex = require('knex')({
 });
 app.get("/",(req,resp)=>{
     resp.json("232")
-    client.connect()
-    .then(()=>{return client.query("select * from users")})
-    .then(data=>resp.json(data))
-    .finally(()=>{client.end()})
-    resp.json("232")
+    // client.connect()
+    // .then(()=>{return client.query("select * from users")})
+    // .then(data=>resp.json(data))
+    // .finally(()=>{client.end()})
+    // resp.json("232")
 })
 
 
