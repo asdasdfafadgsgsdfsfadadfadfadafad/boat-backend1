@@ -7,8 +7,8 @@ app.use(express.json())
 app.use(cors())
 
 
-const { Client } = require('pg');
-const client = new Client({
+const { Pool  } = require('pg');
+const client = new Pool ({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
@@ -22,7 +22,6 @@ const client = new Client({
 // });
 app.get("/",(req,resp)=>{
     // resp.json("asdasdasdasdasdasdasda")
-    resp.json(process.env.DATABASE_URL)
     client.connect()
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
