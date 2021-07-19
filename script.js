@@ -25,7 +25,7 @@ app.get("/",(req,resp)=>{
     .then(()=>{return client.query("select * from users")})
     .then(data=>resp.json(data.rows))
     .finally(()=>{client.end()})
-    .except(err=>resp.json("error"))
+    
 })
 
 
