@@ -44,7 +44,7 @@ const knex = require('knex')({
     }
 });
 app.get("/",(req,resp)=>{
-    resp.json(knex("users"))
+    resp.json("ssssseeeeeee")
 })
 app.post("/register",(req,resp)=>{
     var email = req.body.email;
