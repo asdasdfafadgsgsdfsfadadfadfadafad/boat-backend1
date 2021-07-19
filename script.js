@@ -23,8 +23,9 @@ const client = new Client({
 app.get("/",(req,resp)=>{
     client.connect()
     .then(()=>{return client.query("select * from users")})
-    .then(data=>resp.json(data))
+    .then(data=>resp.json(data.rows))
     .finally(()=>{client.end()})
+    .except(err=>resp.json("error"))
 })
 
 
