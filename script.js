@@ -21,12 +21,10 @@ app.use(cors())
 //     production: { client: 'pg', connection: process.env.DATABASE_URL }
 // });
 app.get("/",(req,resp)=>{
-    resp.json("232")
-    // client.connect()
-    // .then(()=>{return client.query("select * from users")})
-    // .then(data=>resp.json(data))
-    // .finally(()=>{client.end()})
-    // resp.json("232")
+    client.connect()
+    .then(()=>{return client.query("select * from users")})
+    .then(data=>resp.json(data))
+    .finally(()=>{client.end()})
 })
 
 
